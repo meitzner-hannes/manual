@@ -1,36 +1,19 @@
 # Lithium: Der definitive Leitfaden
 
-So, du bist daran interessiert knackige Applikationen mit dem neusten krassen techniken zu
-schreiben? Wikommen bei Lithium, dem krassesen Framework für PHP.
+So, du bist daran interessiert knackige Applikationen mit den neusten krassen Techniken zu schreiben? Willkommen bei Lithium, dem krassesten Framework für PHP.
 
+Die hier zur Verfügung stehenden Leitfäden sind gedacht für PHP Entwickler die versuchen heraus zu bekommen was Lithium kann und, wesentlich wichtiger, was es für SIE tun kann. Diese Leitfäden sollen eine Art Reise durch die Welt von Lithium sein. Hast du sie gemacht weist du wie man mit MVC, Datenzugriff, Authentifizierung, Autorisierung, Validierung, Internationalisierung, Entwürfen und Modultests umgeht. Um es kurz zu machen, du wirst alles zum Thema "Schnelle Anwendungsentwicklung" nach Lithium Art lernen.
 
-
-So you're interested in writing tight apps with the latest RAD techniques? Welcome to Lithium, the most RAD framework for PHP.
-
-
-Die hier zu verfügungen stehenden Leitfäden sind für PHP Entwickler die versuchen heraus zu bekommen
-was Lithium kann und, wesendlich wichtiger, was es für DICH tun kann. Diese Leitfäden sollen eine
-art Weltreise über den Planeten Lithium sein. Hast du sie ein mal gemacht weist du wie man mit
-MVC, Datenzugriff, Authentifizierung, Authorisierung, Validierung, Internationalisierung, Entwürfen
-und Modultests umgeht. Um es kurz zu machen, du wirst alles zum Thema "Schnelle
-Anwendungsentwicklung" nach Lithium Art.
-
-Genug gequatscht, fangen wir an.
+Genug geredet, fangen wir an!
 
 ## Mitarbeit
 
-Thises Projekt is ein immerwärende Aufgabe und wir brauchen deine Hilfe. Jeder Lithium Benutzer ob
-Jung oder Alt wird bei diesem Spaß herzlichen willkommen geheißen. Wenn du mal über ein Problem
-stolperst hilf uns indem du darüber berichtet und man deine Lösung weiter verbreiten kann so das es
-andere leichter leichter vorran kommen. Es gibt viele Möglichkeiten uns zu helfen, wir brauchen:
+Dieses Projekt ist ein fortwährende Aufgabe und wir brauchen deine Hilfe. Jeder Lithium Benutzer ob Jung oder Alt wird bei diesem Spaß herzlichen willkommen geheißen. Wenn du mal über ein Problem stolperst hilf uns indem du darüber berichtest und man deine Lösung weiter verbreiten kann. Das hilft anderen schneller voran zu kommen. Es gibt viele Möglichkeiten uns zu helfen, z.B. durch:
 
  * Quelltext-Beispiele um die Dokumentation zu bereichern
- * Listen und Tabellen um bestehende Konzepte zu erklären
+ * Listen und Tabellen um Konzepte zu erklären
  * Kurze Notizen die oft verwendete Prozesse beschreiben
  * Fehlerkorrekturen (Tippfehler, Ungenauigkeiten, usw.)
- * Übersetzungen (Bitte vom englischen Original ;) )
+ * Übersetzungen (Neue bitte vom englischen Original)
 
-Wenn du helfen möchstest, [forke das Projekt auf Github](https://github.com/UnionOfRAD/manuals),
-[eröffne uns ein Problem](https://github.com/UnionOfRAD/manuals/issues) oder trete in Kontakt mit
-einem Mitglied des Entwicklungsteams. Oder kommt einfach in unserem IRC Kanal vorbei und fragt (auf
-englisch) wie ihr helfen könnt :)
+Wenn du helfen möchtest, [forke das Projekt auf Github](https://github.com/UnionOfRAD/manuals),[eröffne uns ein Problem](https://github.com/UnionOfRAD/manuals/issues) oder trete in Kontakt mit einem Mitglied des Entwicklungsteams. Oder komm einfach mal in unserem IRC Kanal vorbei und fragt (auf englisch) wie du helfen kannst :)

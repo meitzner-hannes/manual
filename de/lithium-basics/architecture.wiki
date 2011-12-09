@@ -1,20 +1,13 @@
 # Lithiums Architektur
 
-Nachdem sich der Großteil der Anleitungen damit beschäftigen wie du deine eigenen Klassen
-(Kontroller, modelle und der gleichen) in Lithium erstellt möchtest du dich vieleicht auch ein bissel mit der
-grundlegenden architektorischen Ideen und Philosophien hinter dem Framework beschäftigen.
-Wenn man an den Punkt kommst den Code zu kennen und eigenen Plugins und Erweiterungen zu
-schreiben, ist es wichtig diese im Einklang mit Lithiums Architektur zu entwickeln.
+Nachdem sich der Großteil der Anleitungen damit beschäftigt wie man seine eigenen Klassen (Controller, Modelle und der gleichen) in Lithium erstellt, möchtest du dich vielleicht auch ein bisschen mit den grundlegenden architektonischen Ideen und Philosophien hinter dem Framework beschäftigen.
+Wenn man an den Punkt kommt sich mit dem Code aus zu kennen und eigenen Plugins und Erweiterungen schreibt, ist es wichtig diese im Einklang mit Lithiums Architektur zu entwickeln.
 
-Dieser Leitfaden soll einige Ideen und Vorgehensweisen erklähren wie Lithium auf der grundlegenden
-Ebene zusammengesetzt ist. Die Kernbibliotheken zu durchstöbern macht nach dem verstehen der hier beschriebenen Grundlagen mehr
-Sinn.
+Dieser Leitfaden soll einige Ideen und Vorgehensweisen erläutern wie Lithium auf der grundlegenden Ebene zusammengesetzt ist. Die Kernbibliotheken zu durchstöbern macht nach dem verstehen der hier beschriebenen Grundlagen mehr Sinn.
 
 # Konstruktoren und Initialisierung
 
-Die Basisklasse in Lithiums Rangordnung, `lithium\core\Object`, bildet die grundlegende Logik für all die
-konkreten Klassen des Frameworks. Diese Klasse definiert diverse Konventionen dafür wie Klassen in
-Lithium struktoriert sein sollen:
+Die Basisklasse in Lithiums Rangordnung, `lithium\core\Object`, bietet die grundlegende Logik für all die konkreten Klassen des Frameworks. Diese Klasse definiert diverse Konventionen dafür wie Klassen in Lithium aufgebaut sein sollten:
 
  * Universeller Konstruktor
  * Objektkonfiguration
@@ -24,26 +17,16 @@ Lithium struktoriert sein sollen:
 
 ## Universeller Konstruktor
 
-Die `Object` Klasse besitzt einen einheitlichen Kontruktor den alle Klassen teilen. Diese funktion
-erwartet eine einiges Argument, `$config` welches eine Array von Eigenschaften ist die wiedrum
-automatisch in die `$_config` Eigenschaft des derzeitigen Objekts gespeichert werden.
+Die `Object` Klasse besitzt einen einheitlichen Konstruktor den alle Klassen teilen. Diese Funktion erwartet eine einziges Argument, `$config`, das ein Array von Eigenschaften ist welche automatisch in die `$_config` Eigenschaft des aktuellen Objekts gespeichert werden.
 
-Dieser Ansatz erlaubt kürzere Konstruktoren and stellt einen einheitlichen Weg zum überschreiben der
-Objektkonfiguration oder dem setzen von Voreinstellungen bei der Unterklassenbildung.
+Dieser Ansatz erlaubt kürzere Konstruktoren und stellt einen einheitlichen Weg zum überschreiben der Objektkonfiguration oder dem setzen von Voreinstellungen bei der Unterklassenbildung bereit.
 
 
 ## Objekt Konfiguration & Initialisierung
 
-Die Logik des Konstruktors selbst sollte so klein wie möglich gehalten werden. Um die Schwerstarbeit
-übernimmt die `init()` Methode die im letzten Schritt des einheitlichen Konstruktors aufgerufen
-wird.
+Die Logik des Konstruktors selbst sollte so klein wie möglich gehalten werden. Die Schwerstarbeit übernimmt die `init()` Methode welche im letzten Schritt des einheitlichen Konstruktors aufgerufen wird.
 
-Wenn wir ein Objekt in seinem un-initialisierten Zustand bearbeiten wollen, können wir `false` als
-Wert für 
-
-Um ein Objekt in seinem un-initialisierten Zustand bearbeiten zu können müssen wir dem
-Konstruktor den Schlüssel `init` mit dem Wert `false` mitgeben. Das Verhindert die Ausführung von
-`init()` und ist gerade bei der erstellung von Testfällen nützlich.
+Um ein Objekt in seinem "un-initialisierten" Zustand bearbeiten zu können müssen wir dem Konstruktor den Schlüssel `init` mit dem Wert `false` mitgeben. Das Verhindert die Ausführung von `init()` und ist gerade bei der Erstellung von Testfällen nützlich.
 
 {{{
 <?php
@@ -53,23 +36,23 @@ use lithium\net\http\Service;
 
 class Foo extends \lithium\core\Object {
 	public $service;
-	
+
 	public function __construct(array $config = array()) {
 		$defaults = array(
 			'foo' => 'bar'
 		);
 		parent::__construct($config + $defaults);
 	}
-	
+
 	public function _init() {
 		parent::_init();
 		$this->service = new Service();
 	}
-	
+
 	public function baz() {
 		echo $this->_config['foo'];
 	}
-} 
+}
 ?>
 }}}
 
@@ -98,7 +81,7 @@ get_class($foo->service);  // 'lithium\net\http\Service'
 
 The `Object` class also allows subclasses to filter their methods. An entire guide has been dedicated to filters, and you'll find examples and explanations later in this chapter.
 
-Long story short, a filterable method is created by encapsulating the main logic for a method inside a closure. That closure is then passed to `Object::_filter()` (or `StaticObject::_filter()` for static objects) to allow for chain management. 
+Long story short, a filterable method is created by encapsulating the main logic for a method inside a closure. That closure is then passed to `Object::_filter()` (or `StaticObject::_filter()` for static objects) to allow for chain management.
 
 Subclasses of `Object` use the filter methods to allow other developers to wrap logic around their own without cluttering the object's API.
 
@@ -120,12 +103,12 @@ $object = MockObject::__set_state(array(
 ));
 
 $object->getProtected();        // 'testing'
-?>	
+?>
 }}}
 
 # Managing Dependencies
 
-Objects that subclass Lithium's core `Object` class can also manage dependencies at runtime using a simple dependency injection mechanism. 
+Objects that subclass Lithium's core `Object` class can also manage dependencies at runtime using a simple dependency injection mechanism.
 
 # Package Organization
 
@@ -229,11 +212,11 @@ If you've got some proprietary database, and it's result objects or query struct
 
 ### Helper
 
-Custom view helpers are common need. These classes should extend `lithium\template\Helper` and be placed in this folder. 
+Custom view helpers are common need. These classes should extend `lithium\template\Helper` and be placed in this folder.
 
 ## Libraries
 
-The `libraries` folder is meant to house entire Lithium applications—or plugins—that your main application makes use of. 
+The `libraries` folder is meant to house entire Lithium applications—or plugins—that your main application makes use of.
 
 Any plugins you download from the [ Laboratory](http://lab.lithify.me/), or pull down via the Library `li3` command should end up here.
 
@@ -261,21 +244,21 @@ All of the actual unit testing logic for the main MVC classes in the application
 
 ### Integration
 
-Unit tests in the `integration` folder test the interaction between two or more classes, or abstract class implementations. 
+Unit tests in the `integration` folder test the interaction between two or more classes, or abstract class implementations.
 
 ### Mocks
 
-Classes in `mocks` are used to facilitate certain unit tests. For example, if I'm testing a custom model I've created, I can create a new class in `mocks/data/MockSource.php` and use it in my model unit testing logic. 
+Classes in `mocks` are used to facilitate certain unit tests. For example, if I'm testing a custom model I've created, I can create a new class in `mocks/data/MockSource.php` and use it in my model unit testing logic.
 
 It is recommend that you use subfolder organization that mimics your application's and Lithium's namespacing and folder structure.
 
 ## Views
 
-The `views` folder contains any pieces of view-level code in your application. The two main core folders here to note are `elements` and `layouts`. Other view folders here contain views organized by controller name. 
+The `views` folder contains any pieces of view-level code in your application. The two main core folders here to note are `elements` and `layouts`. Other view folders here contain views organized by controller name.
 
 ### Elements
 
-Elements are small bits of view code that are used in multiple views. A common navigational element, menu, or form might end up as an element in this folder. Element files are suffixed with a compound extension: the first showing the type of view code, and the last as `.php`. 
+Elements are small bits of view code that are used in multiple views. A common navigational element, menu, or form might end up as an element in this folder. Element files are suffixed with a compound extension: the first showing the type of view code, and the last as `.php`.
 
 Example element filenames might include `nav.html.php`, `animateLink.js.php`, or `header.xml.php`.
 
@@ -293,6 +276,6 @@ One default example is the `pages` folder here that holds all the views for the 
 
 ## Webroot
 
-The `webroot` folder of your application is (ideally) the only place in your application that is web-visible. The `index.php` file takes care of bootstrapping Lithium, and the rest of the folders and files here are used for static content delivery. 
+The `webroot` folder of your application is (ideally) the only place in your application that is web-visible. The `index.php` file takes care of bootstrapping Lithium, and the rest of the folders and files here are used for static content delivery.
 
 Things like JavaScript files, images, Flash objects, and movies should end up here for easy access for your web server to deliver to the client.
